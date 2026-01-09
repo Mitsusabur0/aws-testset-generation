@@ -43,7 +43,6 @@ generator_embeddings = LangchainEmbeddingsWrapper(BedrockEmbeddings(
 # ####################
 # LOAD MARKDOWN FILES
 
-# folder_path = "./knowledge_base" 
 folder_path = "./knowledge_base" 
 loader = DirectoryLoader(
     folder_path, 
@@ -145,7 +144,7 @@ dataset = generator.generate_with_langchain_docs(
 
 df = dataset.to_pandas()
 
-output_filename = "ragas_testset.csv"
+output_filename = "ragas_testset_small.csv"
 df.to_csv(output_filename, index=False)
 
 print(f"✅ Success! Testset saved to {output_filename}")
