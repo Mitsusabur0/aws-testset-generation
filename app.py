@@ -120,11 +120,12 @@ with tab2:
 
     # 1. THE SELECTOR TABLE
     # Showing 'complexity' instead of 'persona_name'
-    display_cols = ['user_input', 'hit_rate', 'recall', 'complexity']
+    # display_cols = ['user_input', 'hit_rate', 'recall', 'complexity']
+    display_cols = ['user_input', 'hit_rate', 'mrr', 'complexity']
     
     event = st.dataframe(
-        df[display_cols].style.format({'hit_rate': '{:.0%}', 'recall': '{:.0%}'})
-        .background_gradient(subset=['hit_rate'], cmap="RdYlGn", vmin=0, vmax=1),
+        df[display_cols].style.format({'hit_rate': '{:.2f}', 'mrr': '{:.2f}'})
+        .background_gradient(subset=['mrr'], cmap="RdYlGn", vmin=0, vmax=1),
         use_container_width=True,
         hide_index=True,
         on_select="rerun",

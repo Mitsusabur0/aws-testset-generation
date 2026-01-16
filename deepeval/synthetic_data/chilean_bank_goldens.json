@@ -1,0 +1,92 @@
+[
+    {
+        "input": "¿Cómo me pueden ayudar los depósitos a plazo y los bonos de renta fija a tener una inversión estable siendo un ahorrador novato?",
+        "actual_output": null,
+        "expected_output": "Los depósitos a plazo y los bonos son instrumentos de renta fija; ofrecen mayor estabilidad porque el rendimiento es predecible y seguro, lo que permite minimizar riesgos y obtener resultados más predecibles, ideal para un ahorrador novato.",
+        "context": [
+            "# Renta fija y variable: ¿cuál es la mejor opción para tu primer ahorro?\n\n\n## Respuesta\n\nDar el primer paso hacia el ahorro puede parecer complicado, pero entender conceptos como renta fija y variable te ayudará a tomar decisiones más informadas. Ambas opciones ofrecen ventajas, dependiendo de tus necesidades y tolerancia al riesgo:\n\nRenta fija: Se basa en instrumentos como depósitos a plazo o bonos. Ofrecen mayor estabilidad porque el rendimiento es predecible y seguro.\n\nRenta variable: Incluye instrumentos como acciones. Pueden ser más riesgosos, pero también ofrecen la posibilidad de mayores retornos.\n\n¿Cómo elegir?\n\nSi buscas seguridad, empieza por la renta fija. Es ideal para quienes prefieren minimizar riesgos y necesitan resultados más predecibles. Además, antes de invertir, analiza tus metas financieras, infórmate bien y consulta las diferentes opciones que se adapten a tu situación actual.\n\nAhorrar, por pequeño que sea el monto, es una excelente manera de construir tranquilidad financiera a largo plazo. ¡La clave está en conocer las alternativas y elegir la que mejor se ajuste a tu realidad!\n\nRenta fija y variable: ¿cuál es la mejor opción para tu primer ahorro?\n\n---\n**Fuente**: https://www.educacionfinancierabancoestado.cl/quiero-ahorrar/detalle-quiero-ahorrar/c%C3%B3mo-ahorrar-si-tengo-ingresos-irregulares"
+        ],
+        "source_file": "../old_knowledge_base_small\\BD1-00086.md"
+    },
+    {
+        "input": "Oye, ¿en qué transacción se paga el IVA y dónde se hace?",
+        "actual_output": null,
+        "expected_output": "El IVA (impuesto al valor agregado) se paga en cada compra que realizas. Los impuestos se pagan según la operación que realices.",
+        "context": [
+            "# ¿Dónde puedo pagar mis impuestos?\n\n## Respuesta\n\nLos impuestos se pagan en virtud de la operación que realices. Por ejemplo, el IVA (impuesto al valor agregado) se paga en cada compra que realizas.\n\n¿Dónde puedo pagar mis impuestos?\n"
+        ],
+        "source_file": "../old_knowledge_base_small\\BD1-00010.md"
+    },
+    {
+        "input": "¿Cómo puedo fijar metas, elegir montos, automatizar transferencias y seguir mi progreso para ahorrar sin complicaciones?",
+        "actual_output": null,
+        "expected_output": "**Cómo fijar metas, elegir montos, automatizar transferencias y seguir tu progreso**\n\n1. **Establece una meta clara**: define exactamente para qué estás ahorrando.  \n2. **Elige el monto a ahorrar**: calcula un porcentaje de tus ingresos que puedas transferir regularmente.  \n3. **Automatiza los pagos**: configura transferencias automáticas desde tu cuenta de ingreso a una cuenta de ahorros.  \n4. **Revisa y ajusta tus metas**: periódicamente verifica tu progreso y modifica la meta o el monto si es necesario.  \n\nCon estos pasos tendrás un ahorro constante, sencillo y sin complicaciones.",
+        "context": [
+            "# Ahorro automático: la clave para alcanzar tus metas financieras\n\n\n## Respuesta\n\n¿Te gustaría ahorrar dinero sin tener que pensarlo dos veces? El ahorro automático es una herramienta poderosa que te permite alcanzar tus metas financieras de manera sencilla y efectiva. Descubre cómo esta práctica puede transformar tu relación con el dinero.\n\n¿Qué es el ahorro automático?Es una estrategia financiera en la que se programan transferencias regulares de una parte del ingreso hacia una cuenta de ahorros, sin necesidad de intervención manual. Esto ayuda a ahorrar de manera constante y facilita la acumulación de fondos a lo largo del tiempo, promoviendo una gestión más eficiente y ordenada del dinero.\n\n¿Qué beneficios tiene el ahorro automático?\n\n● Facilidad y comodidad.\n\n● Consistencia en el ahorro.\n\n● Mayor disciplina financiera.\n\n● Ganancias extra por intereses.\n\n¿Cómo implementar el ahorro automático?\n\n● Establecer una meta clara: Define para qué estás ahorrando.\n\n● Elegir el monto a ahorrar: Calcula un porcentaje de tus ingresos.\n\n● Automatizar los pagos: Configura transferencias automáticas.\n\nConsejos adicionales:\n\n● Sé paciente: Los resultados se ven a largo plazo.\n\n● Revisa tus metas periódicamente: Ajusta tu plan de ahorro si es necesario.\n\nEl ahorro automático es una estrategia simple pero efectiva para construir tu futuro financiero. Al automatizar tus ahorros, estarás más cerca de alcanzar tus metas y disfrutar de mayor tranquilidad económica.\n\nAhorro automático: la clave para alcanzar tus metas financieras\n\n---\n**Fuente**: https://www.educacionfinancierabancoestado.cl/quiero-ahorrar/detalle-quiero-ahorrar/ahorro-autom%C3%A1tico-la-clave-para-alcanzar-tus-metas-financieras"
+        ],
+        "source_file": "../old_knowledge_base_small\\BD1-00101.md"
+    },
+    {
+        "input": "¿Me puedes explicar qué es la cartola de gastos operacionales y qué incluye, como la inscripción, la conservación, la tasación, el estudio del título y la redacción de la escritura?",
+        "actual_output": null,
+        "expected_output": "Es el documento que muestra los movimientos y saldos relacionados a los gastos operacionales incurridos para cursar el crédito hipotecario, tales como: inscripción conservatoria, tasación, estudio de títulos y redacción de escritura.",
+        "context": [
+            "# Qué es la cartola de gastos operacionales\n\n## Respuesta\n\nEs el documento que muestra los movimientos y saldos relacionados a los gastos operacionales incurridos para cursar el crédito hipotecario, tales como: inscripción conservatoria, tasación, estudio de títulos y redacción de escritura.\n\nQué es la cartola de gastos operacionales\n"
+        ],
+        "source_file": "../old_knowledge_base_small\\BD1-00143.md"
+    },
+    {
+        "input": "Con solo 4 meses y empleo asalariado, ¿cumplo la antigüedad mínima para hipoteca?",
+        "actual_output": null,
+        "expected_output": "La antigüedad mínima requerida depende de la actividad o tipo de ingreso del cliente; para saber si con 4 meses y empleo asalariado cumples, debes consultar las especificaciones correspondientes en el sitio público.",
+        "context": [
+            "# Antigüedad y Situación Laboral para Solicitar Crédito Hipotecario\n\n## Respuesta\n\nLa antigüedad laboral mínima requerida se encuentra en función de la actividad o tipo de ingreso del cliente. (diferencias en sitio público)\n\nAntigüedad y Situación Laboral para Solicitar Crédito Hipotecario\n"
+        ],
+        "source_file": "../old_knowledge_base_small\\BD1-00594.md"
+    },
+    {
+        "input": "¿Qué es el certificado de depósito a plazo y quién lo emite?",
+        "actual_output": null,
+        "expected_output": "Es un documento que emite el Servicio de Registro Civil que acredita la existencia o no de inscripciones en el Registro Nacional de Deudores de Pensión de Alimentos.",
+        "context": [
+            "# Qué es el certificado de pensión de alimento y donde se obtiene\n\n## Respuesta\n\nEs un documento que emite el Servicio de Registro Civil que acredita la existencia o no de inscripciones en el Registro Nacional de Deudores de Pensión de Alimentos.\n\nQué es el certificado de pensión de alimento y donde se obtiene\n"
+        ],
+        "source_file": "../old_knowledge_base_small\\BD1-00144.md"
+    },
+    {
+        "input": "¿Cómo se compara la elegibilidad para un crédito hipotecario si soy chileno con la de un extranjero con residencia permanente?",
+        "actual_output": null,
+        "expected_output": "Chilena o extranjera con permanencia definitiva. Sujeto a cumplimiento de requisitos comerciales y normativos vigentes a la fecha de otorgamiento.",
+        "context": [
+            "# Nacionalidad para Solicitar Crédito Hipotecario\n\n## Respuesta\n\nChilena o extranjera con permanencia definitiva. Sujeto a cumplimiento de requisitos comerciales y normativos vigentes a la fecha de otorgamiento.\n\nNacionalidad para Solicitar Crédito Hipotecario\n"
+        ],
+        "source_file": "../old_knowledge_base_small\\BD1-00599.md"
+    },
+    {
+        "input": "¿Si tengo deudas y pago bien, eso influye en que me aprueben un crédito?",
+        "actual_output": null,
+        "expected_output": "Sí. Para que te aprueben un crédito, debes contar con un endeudamiento que te permita asumir la obligación y demostrar buen comportamiento en el pago de tus obligaciones financieras, tanto al presentar la solicitud como al momento de la resolución del crédito.",
+        "context": [
+            "# Buen comportamiento y endeudamiento\n\n## Respuesta\n\nAl momento de la evaluación, el o los solicitantes, deberán contar con un endeudamiento que permita al cliente asumir una obligación crediticia y un buen comportamiento de pago de sus obligaciones financieras.\n\nLos antecedentes de endeudamiento y comportamiento deben cumplirse al momento de presentar la solicitud, como también al momento de la resolución del crédito\n\nBuen comportamiento y endeudamiento\n"
+        ],
+        "source_file": "../old_knowledge_base_small\\BD1-00595.md"
+    },
+    {
+        "input": "Tengo un sueldo de 600 mil y el dividendo sería X. ¿Cumplo el 30 % y necesito co‑deudor o aval independiente para un crédito de 900 mil?",
+        "actual_output": null,
+        "expected_output": "Con un sueldo líquido de **$600.000**, cumples con la renta mínima exigida para solicitar el crédito.  \nEl dividendo debe ser, como máximo, el **30 % de tus ingresos**, es decir ≤ $180.000. Si el dividendo X está dentro de ese rango, cumples con el requisito del 30 %.\n\nPara un crédito de **$900.000**, la norma indica que la suma de rentas de los titulares (tú y el co‑deudor o segundo comprador) debe ser **igual o superior a $900.000**. Como tu renta sola es $600.000, necesitarías:\n\n- **Un co‑deudor** (con o sin vínculo) o  \n- **Un segundo/tercer comprador**  \n\npara alcanzar la renta combinada requerida.  \n\nEn caso de optar por un **aval**, este debe ser evaluado de forma independiente y cumplir todos los requisitos de la evaluación comercial y de riesgo.",
+        "context": [
+            "# Renta líquida Mínima para Solicitar Crédito Hipotecario\n\n## Respuesta\n\nSueldo líquido mayor o igual a $600.000 con opción de complementar renta con un codeudor, con o sin vínculo, o segundo comprador. Sujeto a evaluación comercial y de riesgo vigente al momento de otorgamiento del crédito.\n\nOpción de complementar renta con un codeudor, con o sin vínculo, o un segundo o tercer comprador. La renta de ambos ingresos debe ser mayor o igual a $900.000 pesos líquidos.\n\nPara complementación de renta, el titular del crédito debe cumplir con la renta mínima de $600.000. Sujeto a evaluación comercial y de riesgo vigente al momento de otorgamiento del crédito.\n\nEn caso de requerir un aval, este deberá ser evaluado en forma independiente de la misma forma que el deudor directo , deberá calificar en todos los aspectos de la evaluación y cumplir con todas las normativas vigentes por sí solo.\n\nValor del dividendo a pagar hasta el 30% de tus ingresos mensuales.\n\nRenta líquida Mínima para Solicitar Crédito Hipotecario\n"
+        ],
+        "source_file": "../old_knowledge_base_small\\BD1-00602.md"
+    },
+    {
+        "input": "¿Puede deuda en BancoEstado impedir usar recursos propios como pie para crédito hipotecario?",
+        "actual_output": null,
+        "expected_output": "No. El pie debe aportarse con recursos propios y no puede provenir de endeudamiento en BancoEstado u otras instituciones financieras.",
+        "context": [
+            "# Pie para solicitar Crédito Hipotecario\n\n## Respuesta\n\nEl pie (cuota contado) debe ser aportado con recursos propios y no debe corresponder a endeudamiento en BancoEstado u otras instituciones financieras.\n\nPie para solicitar Crédito Hipotecario\n"
+        ],
+        "source_file": "../old_knowledge_base_small\\BD1-00600.md"
+    }
+]
