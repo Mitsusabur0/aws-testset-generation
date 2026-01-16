@@ -22,10 +22,15 @@ config = {
     "temperature": 0,
 }
 
+FOLDER_PATH = "./old_knowledge_base_small"
+OUTPUT_FILE = "testsets/smalltest.csv"
+TESTSET_SIZE = 1
+
+
 sequential_config = RunConfig(
-    max_workers=1,  # This forces one task at a time
-    timeout=60,     # Optional: seconds to wait per call
-    max_retries=3   # Optional: retries per failure
+    max_workers=1,
+    timeout=60,     # seconds to wait per call
+    max_retries=3   
 )
 
 generator_llm = LangchainLLMWrapper(ChatBedrockConverse(
@@ -42,9 +47,8 @@ generator_embeddings = LangchainEmbeddingsWrapper(BedrockEmbeddings(
 # ####################
 # LOAD MARKDOWN FILES
 
-folder_path = "./knowledge_base_SMALL_PROCESSED" 
 loader = DirectoryLoader(
-    folder_path, 
+    FOLDER_PATH, 
     glob="**/*.md",
     loader_cls=UnstructuredMarkdownLoader
 )
@@ -142,15 +146,16 @@ generator = TestsetGenerator(
 
 dataset = generator.generate_with_langchain_docs(
     documents, 
-    testset_size=50,
+    testset_size=TESTSET_SIZE,
     run_config=sequential_config, 
     query_distribution=distributions,  
 )
 
 df = dataset.to_pandas()
 
-output_filename = "ragas_testset_small.csv"
+output_filename = OUTPUT_FILE
 df.to_csv(output_filename, index=False)
 
-print(f"Success! Testset saved to {output_filename}")
+print(f"Success! Testset saved to {OUTPUT_FILE}")
 
+['Contexto erróneo para test']
