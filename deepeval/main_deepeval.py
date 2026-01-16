@@ -117,7 +117,9 @@ def generate_chilean_bank_testset():
     # --- CHANGED: Use the custom BedrockWrapper instead of a string ---
     # You can change the model ID below to any Bedrock model (e.g., meta.llama3-70b-instruct-v1:0)
     # bedrock_model = BedrockWrapper(model_name="us.anthropic.claude-3-5-sonnet-20240620-v1:0")
-    bedrock_model = BedrockWrapper(model_name="openai.gpt-oss-120b-1:0")
+    # bedrock_model = BedrockWrapper(model_name="openai.gpt-oss-120b-1:0")
+    bedrock_model = BedrockWrapper(model_name="us.meta.llama4-maverick-17b-instruct-v1:0")
+
     
     synthesizer = Synthesizer(
         model=bedrock_model, 

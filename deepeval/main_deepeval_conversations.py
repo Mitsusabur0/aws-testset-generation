@@ -130,10 +130,10 @@ def generate_chilean_bank_testset():
     # 7. Generate Goldens
     print(f"Generating goldens from {len(document_paths)} documents...")
     
-    generated_goldens = synthesizer.generate_goldens_from_docs(
+    generated_goldens = synthesizer.generate_conversational_goldens_from_docs(
         document_paths=document_paths,
         context_construction_config=context_construction_config,
-        include_expected_output=True,
+        include_expected_outcome=True,
         max_goldens_per_context=1
     )
 
@@ -143,7 +143,7 @@ def generate_chilean_bank_testset():
         return
 
     # 8. Save Output
-    output_filename = "chilean_bank_goldens"
+    output_filename = "chilean_bank_goldens_conversational"
     print(f"Generation complete. Saving to {output_filename}.json and .csv...")
     
     # Save as JSON (Standard DeepEval format)
