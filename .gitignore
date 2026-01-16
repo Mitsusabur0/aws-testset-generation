@@ -7,6 +7,8 @@ __pycache__/
 
 # C extensions
 *.so
+knowledge_base*/
+old_knowledge_base_full*/
 
 # Distribution / packaging
 .Python

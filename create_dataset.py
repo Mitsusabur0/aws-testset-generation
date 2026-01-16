@@ -17,7 +17,6 @@ import boto3
 boto3_bedrock = boto3.client(service_name='bedrock-runtime', region_name='us-east-2')
 
 config = {
-    # "llm": "us.anthropic.claude-3-5-haiku-20241022-v1:0",
     "llm": "openai.gpt-oss-120b-1:0",
     "embeddings": "amazon.titan-embed-text-v2:0",  
     "temperature": 0,
@@ -43,11 +42,11 @@ generator_embeddings = LangchainEmbeddingsWrapper(BedrockEmbeddings(
 # ####################
 # LOAD MARKDOWN FILES
 
-folder_path = "./knowledge_base" 
+folder_path = "./knowledge_base_SMALL_PROCESSED" 
 loader = DirectoryLoader(
     folder_path, 
     glob="**/*.md",
-    loader_cls=UnstructuredMarkdownLoader # Optional: specifically uses Markdown loader
+    loader_cls=UnstructuredMarkdownLoader
 )
 documents = loader.load()
 print(f"Loaded {len(documents)} documents.")
@@ -82,28 +81,45 @@ Tu tarea es generar SÓLO preguntas CORRECTAS y BIEN FORMULADAS, siguiendo los e
 """
 
 persona_first_buyer = Persona(
-    name="Comprador Primera Vivienda",
+    name="Joven Profesional Primeriza",
     role_description=f"Eres un joven profesional chileno buscando su primer departamento."
-                     f"No entiendes términos financieros complejos. Preguntas con dudas básicas."
+                     f"Estás buscando comprar tu primer departamento pero tienes muchas dudas básicas."
+                     f"No entiendes bien los términos financieros y preguntas cosas simples sobre créditos hipotecarios, tasas de interés, subsidios, etc."
                      f"{common_rules}"
 )
 
 persona_family_investor = Persona(
     name="Padre de Familia Pragmático",
     role_description=f"Eres un padre de familia chileno enfocado en la seguridad y los costos."
-                     f"Preguntas directo al grano sobre dividendos, seguros y tasas."
+                     f"Preguntas directo al grano sobre dividendos, seguros, tasas, etc."
                      f"{common_rules}"
 )
 
 persona_learner = Persona(
     name="Estudiante Curioso",
     role_description=f"Eres un estudiante chileno aprendiendo finanzas. Haces preguntas teóricas "
-                     f"sobre cómo funciona la inflación, la UF y los créditos. "
+                     f"sobre cómo funciona la inflación, la UF, los créditos, etc. "
+                     f"No usas puntuación correcta."
                      f"{common_rules}"
 )
 
-personas = [persona_first_buyer, persona_family_investor, persona_learner]
+persona_small_investor = Persona(
+    name="Pequeña Inversionista",
+    role_description=f"Adulto de 35 años que ha logrado ahorrar dinero."
+                     f"No quieres vivir en la propiedad, sino comprar un departamento pequeño para arrendarlo y mejorar tu jubilación futura. "
+                     f"Tus preguntas se enfocan en la rentabilidad, el porcentaje de financiamiento que da el banco para segundas viviendas, los beneficios tributarios, etc. "
+                     f"{common_rules}"
+)
 
+persona_senior = Persona(
+    name="Usuario Senior",
+    role_description=f"Un administrativo de 58 años próximo a jubilarse. "
+                     f"Escribes mal y haces preguntas confusas, mal escritas, ya que no eres experto en tecnología ni finanzas. "
+                     f"{common_rules}"
+)
+
+
+personas = [persona_first_buyer, persona_family_investor, persona_learner, persona_small_investor, persona_senior]
 
 # QUERY DISTRIBUTION
 syn_single = SingleHopSpecificQuerySynthesizer(llm=generator_llm)
@@ -126,7 +142,7 @@ generator = TestsetGenerator(
 
 dataset = generator.generate_with_langchain_docs(
     documents, 
-    testset_size=20,
+    testset_size=50,
     run_config=sequential_config, 
     query_distribution=distributions,  
 )
@@ -136,5 +152,5 @@ df = dataset.to_pandas()
 output_filename = "ragas_testset_small.csv"
 df.to_csv(output_filename, index=False)
 
-print(f"✅ Success! Testset saved to {output_filename}")
+print(f"Success! Testset saved to {output_filename}")
 
