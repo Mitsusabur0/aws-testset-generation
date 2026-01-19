@@ -7,7 +7,6 @@ import numpy as np
 # ==========================================
 st.set_page_config(
     page_title="RAG Evaluation Dashboard",
-    page_icon="🔍",
     layout="wide"
 )
 
@@ -72,9 +71,9 @@ st.sidebar.info(f"Showing **{len(df)}** out of **{len(df_original)}** test cases
 # ==========================================
 # 4. MAIN LAYOUT
 # ==========================================
-st.title("📊 RAG Retrieval Evaluation")
+st.title("RAG Retrieval Evaluation")
 
-tab1, tab2 = st.tabs(["📈 Dashboard Overview", "🔎 Test Case Explorer"])
+tab1, tab2 = st.tabs(["Dashboard Overview", "Test Case Explorer"])
 
 # ---------------------------------------------------------------------
 # TAB 1: DASHBOARD OVERVIEW
@@ -126,7 +125,8 @@ with tab2:
     event = st.dataframe(
         df[display_cols].style.format({'hit_rate': '{:.2f}', 'mrr': '{:.2f}'})
         .background_gradient(subset=['mrr'], cmap="RdYlGn", vmin=0, vmax=1),
-        use_container_width=True,
+        # use_container_width=True,
+        width="stretch",
         hide_index=True,
         on_select="rerun",
         selection_mode="single-row",
@@ -191,4 +191,4 @@ with tab2:
                         st.markdown(f"❌ **{i+1}.** {ctx_str}")
                     st.markdown("---")
     else:
-        st.info("👆 Select a row in the table above to view details.")
+        st.info("Select a row in the table above to view details.")
