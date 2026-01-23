@@ -7,7 +7,7 @@ import os
 # 1. CONFIGURATION
 # ==========================================
 CONFIG = {
-    "INPUT_FILENAME": "testset_with_clean_retrieval.csv",
+    "INPUT_FILENAME": "testset.csv",
     "OUTPUT_FILENAME": "evaluations/testset_results.parquet",
     # Normalization helps ignore extra spaces or newlines when comparing substring
     "TEXT_NORMALIZATION": True, 
