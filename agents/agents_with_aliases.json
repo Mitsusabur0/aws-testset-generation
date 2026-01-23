@@ -1,0 +1,292 @@
+"agent_name": "pec-cc-ai-desa-streaming-agent-rag",
+"agent_id": "UKQEMRZQUS",
+
+"alias_name": "RAGv5NoKB",
+"alias_id": "TP5NTBGTFE",
+"status": "PREPARED",
+"routing_to_version": "6"
+
+
+[
+{
+    "agent_name": "pec-cc-ai-desa-streaming-agent-rag",
+    "agent_id": "UKQEMRZQUS",
+    "aliases": [
+        {
+            "alias_name": "RAGv2NoKB",
+            "alias_id": "8NIBBMST9L",
+            "status": "PREPARED",
+            "routing_to_version": "3"
+        },
+        {
+            "alias_name": "RAGv3NoKB",
+            "alias_id": "FRAWHTZIZQ",
+            "status": "PREPARED",
+            "routing_to_version": "4"
+        },
+        {
+            "alias_name": "RAGv1NoKB",
+            "alias_id": "GRVBYV380X",
+            "status": "PREPARED",
+            "routing_to_version": "2"
+        },
+        {
+            "alias_name": "RAGv1",
+            "alias_id": "JPSUY1DN1P",
+            "status": "PREPARED",
+            "routing_to_version": "1"
+        },
+        {
+            "alias_name": "RAGv5NoKB",
+            "alias_id": "TP5NTBGTFE",
+            "status": "PREPARED",
+            "routing_to_version": "6"
+        },
+        {
+            "alias_name": "AgentTestAlias",
+            "alias_id": "TSTALIASID",
+            "status": "PREPARED",
+            "routing_to_version": "DRAFT"
+        },
+        {
+            "alias_name": "RAGv4NoKB",
+            "alias_id": "X9BVZUNEKL",
+            "status": "PREPARED",
+            "routing_to_version": "5"
+        }
+    ]
+}
+
+]
+
+
+[
+    {
+        "agent_name": "pec-cc-ai-desa-agent-classifier",
+        "agent_id": "VGPQIG03MW",
+        "aliases": [
+            {
+                "alias_name": "CLASSIFIER",
+                "alias_id": "JRKYHW60JF",
+                "status": "PREPARED",
+                "routing_to_version": "1"
+            },
+            {
+                "alias_name": "AgentTestAlias",
+                "alias_id": "TSTALIASID",
+                "status": "PREPARED",
+                "routing_to_version": "DRAFT"
+            }
+        ]
+    },
+    {
+        "agent_name": "pec-cc-ai-desa-agent-vivienda",
+        "agent_id": "OEZFNIXUER",
+        "aliases": [
+            {
+                "alias_name": "VIVIENDA",
+                "alias_id": "9IMNFHQZHR",
+                "status": "PREPARED",
+                "routing_to_version": "1"
+            },
+            {
+                "alias_name": "AgentTestAlias",
+                "alias_id": "TSTALIASID",
+                "status": "PREPARED",
+                "routing_to_version": "DRAFT"
+            }
+        ]
+    },
+    {
+        "agent_name": "pec-cc-ai-desa-streaming-agent-general-LLAMA4Sc",
+        "agent_id": "GMMIH7I6MR",
+        "aliases": [
+            {
+                "alias_name": "GENERAL",
+                "alias_id": "OWGMG5XDNR",
+                "status": "PREPARED",
+                "routing_to_version": "1"
+            },
+            {
+                "alias_name": "AgentTestAlias",
+                "alias_id": "TSTALIASID",
+                "status": "PREPARED",
+                "routing_to_version": "DRAFT"
+            }
+        ]
+    },
+    {
+        "agent_name": "pec-cc-ai-desa-streaming-agent-general-rob",
+        "agent_id": "D9OA4LWG9G",
+        "aliases": [
+            {
+                "alias_name": "Generalv2",
+                "alias_id": "0PMMIVONWK",
+                "status": "PREPARED",
+                "routing_to_version": "2"
+            },
+            {
+                "alias_name": "GeneralV3",
+                "alias_id": "1UXPSK9IXP",
+                "status": "PREPARED",
+                "routing_to_version": "3"
+            },
+            {
+                "alias_name": "GeneralV4",
+                "alias_id": "NZYUTD8MNO",
+                "status": "PREPARED",
+                "routing_to_version": "4"
+            },
+            {
+                "alias_name": "AgentTestAlias",
+                "alias_id": "TSTALIASID",
+                "status": "PREPARED",
+                "routing_to_version": "DRAFT"
+            },
+            {
+                "alias_name": "GENERAL",
+                "alias_id": "VKOBITSS1P",
+                "status": "PREPARED",
+                "routing_to_version": "1"
+            }
+        ]
+    },
+    {
+        "agent_name": "pec-cc-ai-desa-streaming-agent-generalaa",
+        "agent_id": "CQGVDFHB0L",
+        "aliases": [
+            {
+                "alias_name": "GENERAL",
+                "alias_id": "IAS93PJMW1",
+                "status": "PREPARED",
+                "routing_to_version": "1"
+            },
+            {
+                "alias_name": "AgentTestAlias",
+                "alias_id": "TSTALIASID",
+                "status": "PREPARED",
+                "routing_to_version": "DRAFT"
+            }
+        ]
+    },
+    {
+        "agent_name": "pec-cc-ai-desa-streaming-agent-rag",
+        "agent_id": "UKQEMRZQUS",
+        "aliases": [
+            {
+                "alias_name": "RAGv2NoKB",
+                "alias_id": "8NIBBMST9L",
+                "status": "PREPARED",
+                "routing_to_version": "3"
+            },
+            {
+                "alias_name": "RAGv3NoKB",
+                "alias_id": "FRAWHTZIZQ",
+                "status": "PREPARED",
+                "routing_to_version": "4"
+            },
+            {
+                "alias_name": "RAGv1NoKB",
+                "alias_id": "GRVBYV380X",
+                "status": "PREPARED",
+                "routing_to_version": "2"
+            },
+            {
+                "alias_name": "RAGv1",
+                "alias_id": "JPSUY1DN1P",
+                "status": "PREPARED",
+                "routing_to_version": "1"
+            },
+            {
+                "alias_name": "RAGv5NoKB",
+                "alias_id": "TP5NTBGTFE",
+                "status": "PREPARED",
+                "routing_to_version": "6"
+            },
+            {
+                "alias_name": "AgentTestAlias",
+                "alias_id": "TSTALIASID",
+                "status": "PREPARED",
+                "routing_to_version": "DRAFT"
+            },
+            {
+                "alias_name": "RAGv4NoKB",
+                "alias_id": "X9BVZUNEKL",
+                "status": "PREPARED",
+                "routing_to_version": "5"
+            }
+        ]
+    },
+    {
+        "agent_name": "pec-cc-ai-desa-streaming-agent-rag-LLAMA",
+        "agent_id": "UALY5TLN8Q",
+        "aliases": [
+            {
+                "alias_name": "RAGsinRAGv2",
+                "alias_id": "08CK6SYCIH",
+                "status": "PREPARED",
+                "routing_to_version": "3"
+            },
+            {
+                "alias_name": "RAGSinRAG",
+                "alias_id": "FK4ZN1P6EF",
+                "status": "PREPARED",
+                "routing_to_version": "2"
+            },
+            {
+                "alias_name": "RAGMeta",
+                "alias_id": "P69JFX8KUM",
+                "status": "PREPARED",
+                "routing_to_version": "1"
+            },
+            {
+                "alias_name": "AgentTestAlias",
+                "alias_id": "TSTALIASID",
+                "status": "PREPARED",
+                "routing_to_version": "DRAFT"
+            },
+            {
+                "alias_name": "RAGsinRAGv2Advancedd",
+                "alias_id": "VU7VZGK37U",
+                "status": "PREPARED",
+                "routing_to_version": "5"
+            }
+        ]
+    },
+    {
+        "agent_name": "pec-cc-ai-desa-streaming-agent-rag-testing",
+        "agent_id": "0QIJAWPXXR",
+        "aliases": [
+            {
+                "alias_name": "RAGv1",
+                "alias_id": "DDIAOA0MSQ",
+                "status": "PREPARED",
+                "routing_to_version": "1"
+            },
+            {
+                "alias_name": "AgentTestAlias",
+                "alias_id": "TSTALIASID",
+                "status": "PREPARED",
+                "routing_to_version": "DRAFT"
+            },
+            {
+                "alias_name": "RAGv1English",
+                "alias_id": "UBYQCFEYK6",
+                "status": "PREPARED",
+                "routing_to_version": "2"
+            }
+        ]
+    },
+    {
+        "agent_name": "pec-poc-construccion-imagenes",
+        "agent_id": "OY4BFLRFL9",
+        "aliases": [
+            {
+                "alias_name": "AgentTestAlias",
+                "alias_id": "TSTALIASID",
+                "status": "PREPARED",
+                "routing_to_version": "DRAFT"
+            }
+        ]
+    }
+]
