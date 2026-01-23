@@ -1,10 +1,11 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import re
+
 
 # FILE
 INPUT_PARQUET = "evaluations/testset_results.parquet"
+
 
 # ==========================================
 # 1. PAGE CONFIGURATION
@@ -31,15 +32,10 @@ def load_data():
                 return 'Multi Hop'
             return 'Other'
 
-        # Only create complexity if synthesizer_name exists (it should)
-        if 'synthesizer_name' in df.columns:
-            df['complexity'] = df['synthesizer_name'].apply(get_complexity)
-        else:
-            df['complexity'] = 'Unknown'
-            
+        df['complexity'] = df['synthesizer_name'].apply(get_complexity)
         return df
     except FileNotFoundError:
-        st.error(f"File '{INPUT_PARQUET}' not found. Please run the evaluator script first.")
+        st.error("File 'evaluation_results.parquet' not found. Please run the evaluator script first.")
         return pd.DataFrame()
 
 df_original = load_data()
@@ -104,6 +100,7 @@ with tab1:
 
     with col_chart_1:
         st.subheader("Performance by Complexity")
+        # Compare Single Hop vs Multi Hop
         if not df.empty:
             chart_data = df.groupby("complexity")[["hit_rate", "mrr"]].mean()
             st.bar_chart(chart_data)
@@ -126,12 +123,15 @@ with tab2:
     st.caption("Click on any row to inspect the retrieval details.")
 
     # 1. THE SELECTOR TABLE
+    # Showing 'complexity' instead of 'persona_name'
+    # display_cols = ['user_input', 'hit_rate', 'recall', 'complexity']
     display_cols = ['user_input', 'hit_rate', 'mrr', 'complexity']
     
     event = st.dataframe(
         df[display_cols].style.format({'hit_rate': '{:.2f}', 'mrr': '{:.2f}'})
         .background_gradient(subset=['mrr'], cmap="RdYlGn", vmin=0, vmax=1),
-        width=1500, # Manually setting width to ensure it takes space
+        # use_container_width=True,
+        width="stretch",
         hide_index=True,
         on_select="rerun",
         selection_mode="single-row",
@@ -160,53 +160,35 @@ with tab2:
         # Comparison View
         c1, c2 = st.columns(2)
         
-        # --- LOGIC UPDATE: Robust Normalization & Substring Matching ---
-        def normalize_text(text):
-            """Must match the logic in evaluation.py"""
-            if not isinstance(text, str): return ""
-            text = text.lower()
-            text = text.replace('\n', ' ').replace('\r', '')
-            # Collapse multiple spaces
-            return re.sub(r'\s+', ' ', text).strip()
-
+        # Normalization helper for display logic
+        def norm(t): return str(t).lower().replace('\n', ' ').strip()
+        
         # Handle Ground Truth
         gt_list = selected_row['reference_contexts']
+        # If it's a numpy array, convert to list
         if isinstance(gt_list, np.ndarray):
             gt_list = gt_list.tolist()
         
-        # We pre-calculate normalized GTs for comparison logic
-        gt_normalized_list = [normalize_text(x) for x in gt_list]
+        gt_normalized = [norm(x) for x in gt_list]
 
         with c1:
             st.info("**Expected Contexts (Ground Truth)**")
-            if len(gt_list) == 0:
-                st.write("No ground truth available.")
-            else:
-                for i, ctx in enumerate(gt_list):
-                    st.markdown(f"**{i+1}.** {ctx}")
-                    st.markdown("---")
+            for i, ctx in enumerate(gt_list):
+                st.markdown(f"**{i+1}.** {ctx}")
+                st.markdown("---")
 
         with c2:
             st.success("**Retrieved Contexts (System Output)**")
             
             retrieved_data = selected_row['retrieved_contexts']
-            if isinstance(retrieved_data, np.ndarray):
-                retrieved_data = retrieved_data.tolist()
             
+            # --- FIX: Safe check for array length ---
             if len(retrieved_data) == 0:
                 st.warning("No contexts retrieved.")
             else:
                 for i, ctx in enumerate(retrieved_data):
-                    ctx_str = str(ctx)
-                    cleaned_retrieval = normalize_text(ctx_str)
-                    
-                    # --- CRITICAL CHANGE: Check for Substring Containment ---
-                    # We check if this retrieved chunk exists INSIDE any of the GT chunks
-                    is_match = False
-                    for gt_clean in gt_normalized_list:
-                        if cleaned_retrieval in gt_clean:
-                            is_match = True
-                            break
+                    ctx_str = str(ctx) # Ensure string format
+                    is_match = norm(ctx_str) in gt_normalized
                     
                     if is_match:
                         st.markdown(f"✅ **{i+1}.** {ctx_str}")

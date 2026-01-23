@@ -4,12 +4,13 @@ import re
 import os
 
 # ==========================================
-# 1. CONFIGURATION / HYPERPARAMETERS
+# 1. CONFIGURATION
 # ==========================================
 CONFIG = {
-    "INPUT_FILENAME": "testsets/ragas_testset_simulated.csv",
-    "OUTPUT_FILENAME": "testset_evaluations/evaluation_results_1.parquet",
-    "TEXT_NORMALIZATION": True, # Set to False if you want strict exact case matching
+    "INPUT_FILENAME": "testset_with_clean_retrieval.csv",
+    "OUTPUT_FILENAME": "evaluations/testset_results.parquet",
+    # Normalization helps ignore extra spaces or newlines when comparing substring
+    "TEXT_NORMALIZATION": True, 
 }
 
 # ==========================================
@@ -18,18 +19,17 @@ CONFIG = {
 
 def clean_text(text):
     """
-    Normalizes text to ensure 'Context A' matches 'context a '.
-    Removes newlines, extra spaces, and converts to lowercase.
+    Normalizes text to ensure robust substring matching.
+    Lowercases and removes newlines/extra spaces.
     """
     if not isinstance(text, str):
         return ""
     
     if CONFIG["TEXT_NORMALIZATION"]:
-        # Lowercase
         text = text.lower()
-        # Remove newlines and tabs
+        # Replace newlines with spaces
         text = text.replace('\n', ' ').replace('\r', '')
-        # Remove multiple spaces resulting from the previous step
+        # Collapse multiple spaces into one
         text = re.sub(r'\s+', ' ', text).strip()
         
     return text
@@ -37,7 +37,6 @@ def clean_text(text):
 def parse_list_column(data):
     """
     Safely parses a stringified list (e.g., "['a', 'b']") into a Python list.
-    Returns an empty list if parsing fails.
     """
     try:
         if isinstance(data, list):
@@ -46,47 +45,74 @@ def parse_list_column(data):
     except (ValueError, SyntaxError):
         return []
 
+def is_match(retrieved_item, ground_truths):
+    """
+    CRITICAL LOGIC CHANGE:
+    Returns True if the 'retrieved_item' is found INSIDE any of the 'ground_truths'.
+    This handles the case where Reference has a Footer/Link but Retrieval does not.
+    """
+    for gt in ground_truths:
+        # Check if the clean retrieved text is a substring of the clean ground truth
+        if retrieved_item in gt: 
+            return True
+    return False
+
 def compute_metrics(row):
     """
-    Calculates retrieval metrics for a single row.
+    Calculates retrieval metrics for a single row using Substring Matching.
     """
     # 1. Parse and Normalize Ground Truths
-    # We use a set for GT to allow O(1) lookups, but keep list for duplicate checking if needed
     gt_raw = row.get('reference_contexts', [])
-    gt_normalized = set([clean_text(txt) for txt in gt_raw])
+    gt_normalized = [clean_text(txt) for txt in gt_raw]
     
     # 2. Parse and Normalize Retrieved Contexts
-    # We keep the order of retrieved items for MRR calculation
     ret_raw = row.get('retrieved_contexts', [])
     ret_normalized = [clean_text(txt) for txt in ret_raw]
     
+    # If no retrieval or no GT, return zeros (avoid division by zero)
+    if not ret_normalized or not gt_normalized:
+        return pd.Series({
+            'hit_rate': 0, 'mrr': 0.0, 'precision': 0.0, 'recall': 0.0,
+            'retrieved_count': len(ret_normalized), 'gt_count': len(gt_normalized)
+        })
+
     # --- METRIC CALCULATIONS ---
     
-    # A. HIT RATE (Binary: Did we find at least one correct answer?)
-    # Check intersection
-    hits = [ctx for ctx in ret_normalized if ctx in gt_normalized]
-    hit_rate = 1 if len(hits) > 0 else 0
+    # Identify which retrieved items are "relevant" (matches)
+    # Result is a list of Booleans: [True, False, True]
+    matches_mask = [is_match(ctx, gt_normalized) for ctx in ret_normalized]
     
-    # B. RECALL (What % of the Ground Truth did we find?)
-    if len(gt_normalized) > 0:
-        recall = len(hits) / len(gt_normalized)
-    else:
-        recall = 0.0
+    total_matches = sum(matches_mask)
 
-    # C. PRECISION (What % of retrieved items were actually relevant?)
-    if len(ret_normalized) > 0:
-        precision = len(hits) / len(ret_normalized)
-    else:
-        precision = 0.0
+    # A. HIT RATE (Did we find at least one correct answer?)
+    hit_rate = 1 if total_matches > 0 else 0
+    
+    # B. PRECISION (% of retrieved items that are correct)
+    precision = total_matches / len(ret_normalized)
+
+    # C. RECALL (How many of the GTs did we find?)
+    # Note: Logic assumes if we matched a GT, we found it. 
+    # Since we use substring, we check how many unique GTs were covered by our retrievals.
+    covered_gts = 0
+    for gt in gt_normalized:
+        # Check if this specific GT was covered by ANY retrieval
+        found = False
+        for ret in ret_normalized:
+            if ret in gt:
+                found = True
+                break
+        if found:
+            covered_gts += 1
+            
+    recall = covered_gts / len(gt_normalized)
 
     # D. MEAN RECIPROCAL RANK (MRR)
-    # Score is 1/rank of the FIRST relevant item. 
-    # If first item is correct, score 1. If second is correct, score 0.5.
+    # Score based on the rank of the *first* correct match.
     mrr = 0.0
-    for i, ctx in enumerate(ret_normalized):
-        if ctx in gt_normalized:
+    for i, is_correct in enumerate(matches_mask):
+        if is_correct:
             mrr = 1 / (i + 1)
-            break # Stop after finding the first relevant item
+            break 
 
     return pd.Series({
         'hit_rate': hit_rate,
@@ -102,24 +128,24 @@ def compute_metrics(row):
 # ==========================================
 
 def main():
+    # Ensure output directory exists
+    os.makedirs(os.path.dirname(CONFIG['OUTPUT_FILENAME']), exist_ok=True)
+
     print(f"Loading data from: {CONFIG['INPUT_FILENAME']}...")
     
     if not os.path.exists(CONFIG['INPUT_FILENAME']):
-        print(f"Error: File {CONFIG['INPUT_FILENAME']} not found.")
+        print(f"❌ Error: File {CONFIG['INPUT_FILENAME']} not found.")
         return
 
     # Load Data
     df = pd.read_csv(CONFIG['INPUT_FILENAME'])
-    
     print(f"Processing {len(df)} rows...")
 
-    # Step 1: Fix Data Types (String -> List)
-    # Apply parsing explicitly to ensure we are working with lists
+    # Step 1: Ensure columns are Lists (not strings)
     df['reference_contexts'] = df['reference_contexts'].apply(parse_list_column)
     df['retrieved_contexts'] = df['retrieved_contexts'].apply(parse_list_column)
 
     # Step 2: Calculate Metrics
-    # apply(..., axis=1) sends each row to the function
     metrics_df = df.apply(compute_metrics, axis=1)
     
     # Step 3: Combine Original Data with Metrics
@@ -129,14 +155,13 @@ def main():
     print("\n--- Evaluation Summary ---")
     print(f"Average Hit Rate:  {final_df['hit_rate'].mean():.2%}")
     print(f"Average MRR:       {final_df['mrr'].mean():.4f}")
-    print(f"Average Recall:    {final_df['recall'].mean():.2%}")
     print(f"Average Precision: {final_df['precision'].mean():.2%}")
+    print(f"Average Recall:    {final_df['recall'].mean():.2%}")
     
     # Step 5: Save Output
-    # We save as Parquet to preserve the List data types for the frontend
     final_df.to_parquet(CONFIG['OUTPUT_FILENAME'])
-    print(f"\nResults saved to: {CONFIG['OUTPUT_FILENAME']}")
-    print("You can now load this file into your Streamlit app.")
+    print(f"\n✅ Results saved to: {CONFIG['OUTPUT_FILENAME']}")
+    print("Ready for Streamlit.")
 
 if __name__ == "__main__":
     main()
