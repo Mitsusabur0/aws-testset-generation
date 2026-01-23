@@ -1,11 +1,14 @@
-"agent_name": "pec-cc-ai-desa-streaming-agent-rag",
-"agent_id": "UKQEMRZQUS",
+[
+    {
+        "agent_name": "pec-cc-ai-desa-streaming-agent-rag",
+        "agent_id": "UKQEMRZQUS",
 
-"alias_name": "RAGv5NoKB",
-"alias_id": "TP5NTBGTFE",
-"status": "PREPARED",
-"routing_to_version": "6"
-
+        "alias_name": "RAGv5NoKB",
+        "alias_id": "TP5NTBGTFE",
+        "status": "PREPARED",
+        "routing_to_version": "6"
+    }
+]
 
 [
 {
